@@ -119,11 +119,6 @@ namespace SkateboardSeeSharp
             EnterDemoMode();
         }
 
-        private void lnkDemo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            EnterDemoMode();
-        }
-
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

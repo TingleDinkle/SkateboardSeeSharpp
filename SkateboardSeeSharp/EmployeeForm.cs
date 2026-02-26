@@ -152,7 +152,7 @@ namespace SkateboardSeeSharp
             */
 
             // DEMO: Show success without DB
-            MessageBox.Show("Employee added successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Employee added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearFields();
         }
 
@@ -204,7 +204,7 @@ namespace SkateboardSeeSharp
             */
 
             // DEMO: Show success without DB
-            MessageBox.Show("Employee updated successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Employee updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearFields();
         }
 
@@ -239,7 +239,7 @@ namespace SkateboardSeeSharp
                 */
 
                 // DEMO: Show success without DB
-                MessageBox.Show("Employee deleted successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Employee deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
             }
         }

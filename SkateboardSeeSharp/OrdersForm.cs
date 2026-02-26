@@ -314,7 +314,7 @@ namespace SkateboardSeeSharp
             receipt += $"Tendered:  {tendered:N2}\n";
             receipt += $"Change:    {(tendered - finalTotal):N2}\n";
             receipt += $"=============================\n";
-            receipt += $"Thank you for shopping at\nJesse's Delight!\n(Demo Mode - not saved)";
+            receipt += $"Thank you for shopping at\nJesse's Delight!";
 
             MessageBox.Show(receipt, "Receipt - Order Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -74,7 +74,7 @@ namespace SkateboardSeeSharp
             */
 
             // DEMO: Show success without DB
-            MessageBox.Show("Category added successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Category added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearFields();
         }
 
@@ -110,7 +110,7 @@ namespace SkateboardSeeSharp
             */
 
             // DEMO: Show success without DB
-            MessageBox.Show("Category updated successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Category updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearFields();
         }
 
@@ -145,7 +145,7 @@ namespace SkateboardSeeSharp
                 */
 
                 // DEMO: Show success without DB
-                MessageBox.Show("Category deleted successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Category deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
             }
         }

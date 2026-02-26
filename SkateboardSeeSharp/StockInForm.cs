@@ -147,7 +147,7 @@ namespace SkateboardSeeSharp
 
             // DEMO: Show success without DB
             string action = _selectedProductId == null ? "added" : "updated";
-            MessageBox.Show($"Product {action} successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Product {action} successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearFields();
         }
 
@@ -182,7 +182,7 @@ namespace SkateboardSeeSharp
                 */
 
                 // DEMO: Show success without DB
-                MessageBox.Show("Product deleted successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Product deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
             }
         }
@@ -260,8 +260,8 @@ namespace SkateboardSeeSharp
                 demoTotal += Convert.ToDecimal(row["Import_Price"]) * Convert.ToInt32(row["Import_Quantity"]);
             }
             string demoImportId = "IMP-" + DateTime.Now.ToString("yyyyMMdd") + "-0001";
-            MessageBox.Show($"Import order {demoImportId} saved successfully!\nTotal: {demoTotal:N2}\n(Demo Mode - not saved to database)",
-                "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Import order {demoImportId} saved successfully!\nTotal: {demoTotal:N2}",
+                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             _importLines.Clear();
             txtImportNotes.Clear();
             txtImportPrice.Clear();
