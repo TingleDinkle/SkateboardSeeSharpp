@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36616.10 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkateboardSeeSharp", "SkateboardSeeSharp\SkateboardSeeSharp.csproj", "{8144D4D9-500E-4ECF-A39C-42F2D51F4615}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8144D4D9-500E-4ECF-A39C-42F2D51F4615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8144D4D9-500E-4ECF-A39C-42F2D51F4615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8144D4D9-500E-4ECF-A39C-42F2D51F4615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8144D4D9-500E-4ECF-A39C-42F2D51F4615}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C52A673-4771-420E-9B83-8F9456257A4A}
+	EndGlobalSection
+EndGlobal
