@@ -26,6 +26,7 @@ namespace SkateboardSeeSharp
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.lnkDemo = new System.Windows.Forms.LinkLabel();
             this.panelLoading = new System.Windows.Forms.Panel();
             this.lblLoading = new System.Windows.Forms.Label();
             this.panelMain.SuspendLayout();
@@ -43,6 +44,7 @@ namespace SkateboardSeeSharp
             this.panelMain.Controls.Add(this.txtPassword);
             this.panelMain.Controls.Add(this.btnLogin);
             this.panelMain.Controls.Add(this.lblError);
+            this.panelMain.Controls.Add(this.lnkDemo);
             this.panelMain.Location = new System.Drawing.Point(100, 50);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(400, 420);
@@ -135,6 +137,19 @@ namespace SkateboardSeeSharp
             this.lblError.Text = "";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lnkDemo
+            // 
+            this.lnkDemo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lnkDemo.LinkColor = System.Drawing.Color.FromArgb(0, 123, 255);
+            this.lnkDemo.Location = new System.Drawing.Point(40, 390);
+            this.lnkDemo.Name = "lnkDemo";
+            this.lnkDemo.Size = new System.Drawing.Size(320, 20);
+            this.lnkDemo.TabIndex = 8;
+            this.lnkDemo.TabStop = true;
+            this.lnkDemo.Text = "Enter Demo Mode (no database required)";
+            this.lnkDemo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lnkDemo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDemo_LinkClicked);
+            // 
             // panelLoading
             // 
             this.panelLoading.BackColor = System.Drawing.Color.FromArgb(128, 255, 255, 255);
@@ -182,6 +197,7 @@ namespace SkateboardSeeSharp
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.LinkLabel lnkDemo;
         private System.Windows.Forms.Panel panelLoading;
         private System.Windows.Forms.Label lblLoading;
     }

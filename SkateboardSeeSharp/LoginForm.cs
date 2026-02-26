@@ -16,6 +16,48 @@ namespace SkateboardSeeSharp
             InitializeComponent();
         }
 
+        private void EnterDemoMode()
+        {
+            Employee demoEmployee = new Employee
+            {
+                EmployeeID = "EMP0001",
+                EmployeeName = "Demo Admin",
+                Position = "Admin",
+                Authority = "Admin",
+                Username = "admin",
+                Password = "",
+                PhoneNumber = "0123456789",
+                Email = "admin@jessesdelight.vn"
+            };
+
+            SessionManager.Login(demoEmployee);
+            OpenDashboard();
+        }
+
+        private void OpenDashboard()
+        {
+            panelLoading.Visible = false;
+            MainDashboard dashboard = new MainDashboard();
+            this.Hide();
+            dashboard.FormClosed += (s, args) =>
+            {
+                if (SessionManager.IsLoggedIn)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    txtUsername.Clear();
+                    txtPassword.Clear();
+                    lblError.Text = "";
+                    _loginAttempts = 0;
+                    btnLogin.Enabled = true;
+                    this.Show();
+                }
+            };
+            dashboard.Show();
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (_loginAttempts >= MaxAttempts)
@@ -44,27 +86,7 @@ namespace SkateboardSeeSharp
                 if (employee != null && PasswordHelper.VerifyPassword(password, employee.Password))
                 {
                     SessionManager.Login(employee);
-                    panelLoading.Visible = false;
-
-                    MainDashboard dashboard = new MainDashboard();
-                    this.Hide();
-                    dashboard.FormClosed += (s, args) =>
-                    {
-                        if (SessionManager.IsLoggedIn)
-                        {
-                            Application.Exit();
-                        }
-                        else
-                        {
-                            txtUsername.Clear();
-                            txtPassword.Clear();
-                            lblError.Text = "";
-                            _loginAttempts = 0;
-                            btnLogin.Enabled = true;
-                            this.Show();
-                        }
-                    };
-                    dashboard.Show();
+                    OpenDashboard();
                 }
                 else
                 {
@@ -83,9 +105,21 @@ namespace SkateboardSeeSharp
             catch (Exception ex)
             {
                 panelLoading.Visible = false;
-                MessageBox.Show("Database connection error: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show(
+                    "Cannot connect to database.\n\n" + ex.Message + "\n\nWould you like to enter Demo Mode instead?",
+                    "Connection Error",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    EnterDemoMode();
+                }
             }
+        }
+
+        private void lnkDemo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            EnterDemoMode();
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

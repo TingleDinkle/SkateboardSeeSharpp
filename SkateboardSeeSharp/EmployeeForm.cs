@@ -16,8 +16,8 @@ namespace SkateboardSeeSharp
         public EmployeeForm()
         {
             InitializeComponent();
-            LoadEmployees();
             LoadComboBoxes();
+            try { LoadEmployees(); } catch { }
         }
 
         private void LoadComboBoxes()

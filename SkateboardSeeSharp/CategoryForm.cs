@@ -13,7 +13,7 @@ namespace SkateboardSeeSharp
         public CategoryForm()
         {
             InitializeComponent();
-            LoadCategories();
+            try { LoadCategories(); } catch { }
         }
 
         private void LoadCategories()

@@ -15,9 +15,13 @@ namespace SkateboardSeeSharp
         {
             InitializeComponent();
             InitializeOrderLines();
-            LoadCategories();
-            LoadProducts();
-            LoadCustomers();
+            try
+            {
+                LoadCategories();
+                LoadProducts();
+                LoadCustomers();
+            }
+            catch { }
         }
 
         private void InitializeOrderLines()

@@ -17,8 +17,12 @@ namespace SkateboardSeeSharp
         {
             InitializeComponent();
             InitializeImportLines();
-            LoadProducts();
-            LoadCategories();
+            try
+            {
+                LoadProducts();
+                LoadCategories();
+            }
+            catch { }
         }
 
         private void InitializeImportLines()
