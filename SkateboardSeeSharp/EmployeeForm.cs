@@ -3,21 +3,24 @@ using System.Data;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using SkateboardSeeSharp.DAL;
+// DB: Uncomment when database is connected
+// using SkateboardSeeSharp.DAL;
 using SkateboardSeeSharp.Models;
 
 namespace SkateboardSeeSharp
 {
     public partial class EmployeeForm : Form
     {
-        private readonly EmployeeDAL _employeeDAL = new EmployeeDAL();
+        // DB: Uncomment when database is connected
+        // private readonly EmployeeDAL _employeeDAL = new EmployeeDAL();
         private string _selectedEmployeeId = null;
 
         public EmployeeForm()
         {
             InitializeComponent();
             LoadComboBoxes();
-            try { LoadEmployees(); } catch { }
+            // DB: Uncomment when database is connected
+            // LoadEmployees();
         }
 
         private void LoadComboBoxes()
@@ -31,6 +34,8 @@ namespace SkateboardSeeSharp
 
         private void LoadEmployees()
         {
+            // DB: Uncomment when database is connected
+            /*
             try
             {
                 DataTable dt = _employeeDAL.GetAll();
@@ -51,6 +56,7 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading employees: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         private void ClearFields()
@@ -109,6 +115,8 @@ namespace SkateboardSeeSharp
         {
             if (!ValidateFields()) return;
 
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 if (_employeeDAL.UsernameExists(txtUsername.Text.Trim()))
@@ -141,6 +149,11 @@ namespace SkateboardSeeSharp
             {
                 MessageBox.Show("Error adding employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
+
+            // DEMO: Show success without DB
+            MessageBox.Show("Employee added successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ClearFields();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -153,6 +166,8 @@ namespace SkateboardSeeSharp
 
             if (!ValidateFields()) return;
 
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 if (_employeeDAL.UsernameExists(txtUsername.Text.Trim(), _selectedEmployeeId))
@@ -186,6 +201,11 @@ namespace SkateboardSeeSharp
             {
                 MessageBox.Show("Error updating employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
+
+            // DEMO: Show success without DB
+            MessageBox.Show("Employee updated successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ClearFields();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -201,6 +221,8 @@ namespace SkateboardSeeSharp
 
             if (result == DialogResult.Yes)
             {
+                // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+                /*
                 try
                 {
                     if (_employeeDAL.Delete(_selectedEmployeeId))
@@ -214,6 +236,11 @@ namespace SkateboardSeeSharp
                 {
                     MessageBox.Show("Error deleting employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                */
+
+                // DEMO: Show success without DB
+                MessageBox.Show("Employee deleted successfully! (Demo Mode - not saved to database)", "Demo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFields();
             }
         }
 
@@ -224,18 +251,21 @@ namespace SkateboardSeeSharp
 
         private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
                 _selectedEmployeeId = row.Cells["Employee_ID"].Value.ToString();
                 txtEmployeeName.Text = row.Cells["Employee_Name"].Value.ToString();
                 txtUsername.Text = row.Cells["Username"].Value.ToString();
-                txtPassword.Clear(); // Don't fill password
+                txtPassword.Clear();
                 cmbPosition.SelectedItem = row.Cells["Position"].Value.ToString();
                 cmbAuthority.SelectedItem = row.Cells["Authority"].Value.ToString();
                 txtPhone.Text = row.Cells["Phone_Number"].Value?.ToString() ?? "";
                 txtEmail.Text = row.Cells["Email"].Value?.ToString() ?? "";
             }
+            */
         }
     }
 }

@@ -2,26 +2,25 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using SkateboardSeeSharp.DAL;
+// DB: Uncomment when database is connected
+// using SkateboardSeeSharp.DAL;
 
 namespace SkateboardSeeSharp
 {
     public partial class OrdersForm : Form
     {
-        private readonly OrderDAL _orderDAL = new OrderDAL();
+        // DB: Uncomment when database is connected
+        // private readonly OrderDAL _orderDAL = new OrderDAL();
         private DataTable _orderLines;
 
         public OrdersForm()
         {
             InitializeComponent();
             InitializeOrderLines();
-            try
-            {
-                LoadCategories();
-                LoadProducts();
-                LoadCustomers();
-            }
-            catch { }
+            // DB: Uncomment when database is connected
+            // LoadCategories();
+            // LoadProducts();
+            // LoadCustomers();
         }
 
         private void InitializeOrderLines()
@@ -37,6 +36,8 @@ namespace SkateboardSeeSharp
 
         private void LoadCategories()
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 DataTable dt = _orderDAL.GetCategories();
@@ -49,7 +50,6 @@ namespace SkateboardSeeSharp
                 cmbFilterCategory.DisplayMember = "Category_Name";
                 cmbFilterCategory.ValueMember = "Category_ID";
 
-                // Also load for order entry
                 DataTable dtEntry = _orderDAL.GetCategories();
                 cmbOrderCategory.DataSource = dtEntry;
                 cmbOrderCategory.DisplayMember = "Category_Name";
@@ -60,10 +60,13 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading categories: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         private void LoadProducts()
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 string catId = cmbFilterCategory.SelectedValue?.ToString() ?? "";
@@ -76,10 +79,13 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading products: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         private void LoadCustomers()
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 DataTable dt = _orderDAL.GetCustomers();
@@ -97,20 +103,25 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading customers: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadProducts();
+            // DB: Uncomment when database is connected
+            // LoadProducts();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadProducts();
+            // DB: Uncomment when database is connected
+            // LoadProducts();
         }
 
         private void cmbOrderCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 string catId = cmbOrderCategory.SelectedValue?.ToString();
@@ -126,10 +137,13 @@ namespace SkateboardSeeSharp
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         private void cmbProductId_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             if (cmbProductId.SelectedItem != null && cmbProductId.DataSource is DataTable dt)
             {
                 DataRowView row = cmbProductId.SelectedItem as DataRowView;
@@ -141,39 +155,25 @@ namespace SkateboardSeeSharp
                     nudQuantity.Value = 1;
                 }
             }
+            */
         }
 
         private void btnAddToOrder_Click(object sender, EventArgs e)
         {
-            if (cmbProductId.SelectedValue == null)
+            // DEMO: Add a sample item to order lines for demonstration
+            if (string.IsNullOrEmpty(txtProductName.Text))
             {
-                MessageBox.Show("Please select a product.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                // Demo: add a sample product
+                txtProductName.Text = "Sample Skateboard Deck";
+                txtPrice.Text = "45.00";
             }
 
-            if (nudQuantity.Value <= 0)
-            {
-                MessageBox.Show("Please enter a valid quantity.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            string productId = cmbProductId.SelectedValue.ToString();
+            string productId = "PROD" + (_orderLines.Rows.Count + 1).ToString("D4");
             string productName = txtProductName.Text;
-            decimal unitPrice = Convert.ToDecimal(txtPrice.Text);
+            decimal unitPrice = 0;
+            decimal.TryParse(txtPrice.Text, out unitPrice);
             int quantity = (int)nudQuantity.Value;
             decimal subtotal = unitPrice * quantity;
-
-            // Check if product already in order
-            foreach (DataRow row in _orderLines.Rows)
-            {
-                if (row["Product_ID"].ToString() == productId)
-                {
-                    row["Quantity"] = (int)row["Quantity"] + quantity;
-                    row["Subtotal"] = (decimal)row["Unit_Price"] * (int)row["Quantity"];
-                    CalculateTotal();
-                    return;
-                }
-            }
 
             _orderLines.Rows.Add(productId, productName, unitPrice, quantity, subtotal);
             CalculateTotal();
@@ -211,7 +211,6 @@ namespace SkateboardSeeSharp
                 total += Convert.ToDecimal(row["Subtotal"]);
             }
             lblTotalPrice.Text = total.ToString("N2");
-
             CalculateChange();
         }
 
@@ -262,6 +261,8 @@ namespace SkateboardSeeSharp
                 return;
             }
 
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             try
             {
                 string orderId = _orderDAL.GetNextOrderId();
@@ -277,36 +278,7 @@ namespace SkateboardSeeSharp
                 if (_orderDAL.CreateOrder(orderId, customerId, SessionManager.CurrentEmployee.EmployeeID,
                     totalAmount, discount, "", _orderLines))
                 {
-                    // Show receipt
-                    string receipt = $"========== RECEIPT ==========\n";
-                    receipt += $"Jesse's Delight Skateboard Shop\n";
-                    receipt += $"Order: {orderId}\n";
-                    receipt += $"Date: {DateTime.Now:yyyy-MM-dd HH:mm}\n";
-                    receipt += $"Cashier: {SessionManager.CurrentEmployee.EmployeeName}\n";
-                    receipt += $"-------------------------------\n";
-
-                    foreach (DataRow row in _orderLines.Rows)
-                    {
-                        receipt += $"{row["Product_Name"]} x{row["Quantity"]} @ {Convert.ToDecimal(row["Unit_Price"]):N2} = {Convert.ToDecimal(row["Subtotal"]):N2}\n";
-                    }
-
-                    receipt += $"-------------------------------\n";
-                    receipt += $"Subtotal:  {totalAmount:N2}\n";
-                    receipt += $"Discount:  {discount:N2}\n";
-                    receipt += $"Total:     {finalTotal:N2}\n";
-                    receipt += $"Tendered:  {tendered:N2}\n";
-                    receipt += $"Change:    {(tendered - finalTotal):N2}\n";
-                    receipt += $"=============================\n";
-                    receipt += $"Thank you for shopping at\nJesse's Delight!";
-
-                    MessageBox.Show(receipt, "Receipt - Order Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Reset
-                    _orderLines.Clear();
-                    CalculateTotal();
-                    txtDiscount.Text = "0";
-                    txtAmountTendered.Text = "0";
-                    LoadProducts();
+                    // Show receipt — code below
                 }
             }
             catch (Exception ex)
@@ -314,10 +286,48 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error processing order: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
+
+            // DEMO: Show receipt without DB
+            decimal discount2 = 0;
+            decimal.TryParse(txtDiscount.Text, out discount2);
+            decimal totalAmount2 = 0;
+            decimal.TryParse(lblTotalPrice.Text, out totalAmount2);
+
+            string orderId2 = "SO-" + DateTime.Now.ToString("yyyyMMdd") + "-0001";
+            string receipt = $"========== RECEIPT ==========\n";
+            receipt += $"Jesse's Delight Skateboard Shop\n";
+            receipt += $"Order: {orderId2}\n";
+            receipt += $"Date: {DateTime.Now:yyyy-MM-dd HH:mm}\n";
+            receipt += $"Cashier: {SessionManager.CurrentEmployee.EmployeeName}\n";
+            receipt += $"-------------------------------\n";
+
+            foreach (DataRow row in _orderLines.Rows)
+            {
+                receipt += $"{row["Product_Name"]} x{row["Quantity"]} @ {Convert.ToDecimal(row["Unit_Price"]):N2} = {Convert.ToDecimal(row["Subtotal"]):N2}\n";
+            }
+
+            receipt += $"-------------------------------\n";
+            receipt += $"Subtotal:  {totalAmount2:N2}\n";
+            receipt += $"Discount:  {discount2:N2}\n";
+            receipt += $"Total:     {finalTotal:N2}\n";
+            receipt += $"Tendered:  {tendered:N2}\n";
+            receipt += $"Change:    {(tendered - finalTotal):N2}\n";
+            receipt += $"=============================\n";
+            receipt += $"Thank you for shopping at\nJesse's Delight!\n(Demo Mode - not saved)";
+
+            MessageBox.Show(receipt, "Receipt - Order Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            _orderLines.Clear();
+            CalculateTotal();
+            txtDiscount.Text = "0";
+            txtAmountTendered.Text = "0";
         }
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
+            /*
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvProducts.Rows[e.RowIndex];
@@ -326,6 +336,7 @@ namespace SkateboardSeeSharp
                 nudQuantity.Maximum = Convert.ToInt32(row.Cells["Inventory_Quantity"].Value);
                 nudQuantity.Value = 1;
             }
+            */
         }
     }
 }

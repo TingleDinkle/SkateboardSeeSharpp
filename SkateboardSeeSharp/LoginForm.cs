@@ -1,13 +1,15 @@
 using System;
 using System.Windows.Forms;
-using SkateboardSeeSharp.DAL;
+// DB: Uncomment these when database is connected
+// using SkateboardSeeSharp.DAL;
 using SkateboardSeeSharp.Models;
 
 namespace SkateboardSeeSharp
 {
     public partial class LoginForm : Form
     {
-        private readonly EmployeeDAL _employeeDAL = new EmployeeDAL();
+        // DB: Uncomment when database is connected
+        // private readonly EmployeeDAL _employeeDAL = new EmployeeDAL();
         private int _loginAttempts = 0;
         private const int MaxAttempts = 5;
 
@@ -76,6 +78,9 @@ namespace SkateboardSeeSharp
                 return;
             }
 
+            // DB: UNCOMMENT THIS BLOCK WHEN DATABASE IS CONNECTED
+            // Replace the demo mode call below with actual DB authentication
+            /*
             try
             {
                 panelLoading.Visible = true;
@@ -105,16 +110,13 @@ namespace SkateboardSeeSharp
             catch (Exception ex)
             {
                 panelLoading.Visible = false;
-                DialogResult result = MessageBox.Show(
-                    "Cannot connect to database.\n\n" + ex.Message + "\n\nWould you like to enter Demo Mode instead?",
-                    "Connection Error",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    EnterDemoMode();
-                }
+                MessageBox.Show("Database connection error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
+
+            // DEMO: For now, any login goes to demo mode
+            EnterDemoMode();
         }
 
         private void lnkDemo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
