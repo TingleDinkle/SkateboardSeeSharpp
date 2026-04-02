@@ -14,7 +14,6 @@ namespace SkateboardSeeSharp
         public LoginForm()
         {
             InitializeComponent();
-            MessageBox.Show("DB Authentication Mode Active", "Build Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 

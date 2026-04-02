@@ -27,7 +27,7 @@ namespace SkateboardSeeSharp.DAL
                             Position = reader["Position"].ToString(),
                             Authority = reader["Authority"].ToString(),
                             Username = reader["Username"].ToString(),
-                            Password = reader["Password"].ToString(),
+                            Password = reader["Password"].ToString().Trim(),
                             PhoneNumber = reader["Phone_Number"].ToString(),
                             Email = reader["Email"].ToString()
                         };
