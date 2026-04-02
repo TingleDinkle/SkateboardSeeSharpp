@@ -1,40 +1,23 @@
 using System;
 using System.Windows.Forms;
-// DB: Uncomment these when database is connected
-// using SkateboardSeeSharp.DAL;
+using SkateboardSeeSharp.DAL;
 using SkateboardSeeSharp.Models;
 
 namespace SkateboardSeeSharp
 {
     public partial class LoginForm : Form
     {
-        // DB: Uncomment when database is connected
-        // private readonly EmployeeDAL _employeeDAL = new EmployeeDAL();
+        private readonly EmployeeDAL _employeeDAL = new EmployeeDAL();
         private int _loginAttempts = 0;
         private const int MaxAttempts = 5;
 
         public LoginForm()
         {
             InitializeComponent();
+            MessageBox.Show("DB Authentication Mode Active", "Build Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void EnterDemoMode()
-        {
-            Employee demoEmployee = new Employee
-            {
-                EmployeeID = "EMP0001",
-                EmployeeName = "Demo Admin",
-                Position = "Admin",
-                Authority = "Admin",
-                Username = "admin",
-                Password = "",
-                PhoneNumber = "0123456789",
-                Email = "admin@jessesdelight.vn"
-            };
 
-            SessionManager.Login(demoEmployee);
-            OpenDashboard();
-        }
 
         private void OpenDashboard()
         {
@@ -78,9 +61,6 @@ namespace SkateboardSeeSharp
                 return;
             }
 
-            // DB: UNCOMMENT THIS BLOCK WHEN DATABASE IS CONNECTED
-            // Replace the demo mode call below with actual DB authentication
-            /*
             try
             {
                 panelLoading.Visible = true;
@@ -113,10 +93,6 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Database connection error: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
-
-            // DEMO: For now, any login goes to demo mode
-            EnterDemoMode();
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

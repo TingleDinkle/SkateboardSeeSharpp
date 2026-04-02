@@ -2,16 +2,14 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-// DB: Uncomment when database is connected
-// using SkateboardSeeSharp.DAL;
+using SkateboardSeeSharp.DAL;
 
 namespace SkateboardSeeSharp
 {
     public partial class StockInForm : Form
     {
-        // DB: Uncomment when database is connected
-        // private readonly StockInDAL _stockInDAL = new StockInDAL();
-        // private readonly ProductDAL _productDAL = new ProductDAL();
+        private readonly StockInDAL _stockInDAL = new StockInDAL();
+        private readonly ProductDAL _productDAL = new ProductDAL();
         private DataTable _importLines;
         private string _selectedProductId = null;
 
@@ -19,9 +17,8 @@ namespace SkateboardSeeSharp
         {
             InitializeComponent();
             InitializeImportLines();
-            // DB: Uncomment when database is connected
-            // LoadProducts();
-            // LoadCategories();
+            LoadProducts();
+            LoadCategories();
         }
 
         private void InitializeImportLines()
@@ -36,8 +33,6 @@ namespace SkateboardSeeSharp
 
         private void LoadProducts()
         {
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 DataTable dt = _stockInDAL.GetAllProducts();
@@ -61,13 +56,10 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading products: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
         }
 
         private void LoadCategories()
         {
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 DataTable dt = _stockInDAL.GetCategories();
@@ -80,7 +72,6 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading categories: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
         }
 
         private void ClearFields()
@@ -111,8 +102,6 @@ namespace SkateboardSeeSharp
                 return;
             }
 
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 if (_selectedProductId == null)
@@ -143,12 +132,6 @@ namespace SkateboardSeeSharp
             {
                 MessageBox.Show("Error saving product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
-
-            // DEMO: Show success without DB
-            string action = _selectedProductId == null ? "added" : "updated";
-            MessageBox.Show($"Product {action} successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearFields();
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
@@ -164,8 +147,6 @@ namespace SkateboardSeeSharp
 
             if (result == DialogResult.Yes)
             {
-                // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-                /*
                 try
                 {
                     if (_productDAL.Delete(_selectedProductId))
@@ -179,11 +160,6 @@ namespace SkateboardSeeSharp
                 {
                     MessageBox.Show("Error deleting product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                */
-
-                // DEMO: Show success without DB
-                MessageBox.Show("Product deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearFields();
             }
         }
 
@@ -223,8 +199,6 @@ namespace SkateboardSeeSharp
                 return;
             }
 
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 string importId = _stockInDAL.GetNextImportId();
@@ -251,21 +225,6 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error saving import order: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
-
-            // DEMO: Show success without DB
-            decimal demoTotal = 0;
-            foreach (DataRow row in _importLines.Rows)
-            {
-                demoTotal += Convert.ToDecimal(row["Import_Price"]) * Convert.ToInt32(row["Import_Quantity"]);
-            }
-            string demoImportId = "IMP-" + DateTime.Now.ToString("yyyyMMdd") + "-0001";
-            MessageBox.Show($"Import order {demoImportId} saved successfully!\nTotal: {demoTotal:N2}",
-                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            _importLines.Clear();
-            txtImportNotes.Clear();
-            txtImportPrice.Clear();
-            nudImportQty.Value = 1;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -275,8 +234,6 @@ namespace SkateboardSeeSharp
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvProducts.Rows[e.RowIndex];
@@ -301,7 +258,6 @@ namespace SkateboardSeeSharp
 
                 btnAddProduct.Text = "EDIT PRODUCT";
             }
-            */
         }
     }
 }

@@ -1,28 +1,23 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
-// DB: Uncomment when database is connected
-// using SkateboardSeeSharp.DAL;
+using SkateboardSeeSharp.DAL;
 
 namespace SkateboardSeeSharp
 {
     public partial class CategoryForm : Form
     {
-        // DB: Uncomment when database is connected
-        // private readonly CategoryDAL _categoryDAL = new CategoryDAL();
+        private readonly CategoryDAL _categoryDAL = new CategoryDAL();
         private string _selectedCategoryId = null;
 
         public CategoryForm()
         {
             InitializeComponent();
-            // DB: Uncomment when database is connected
-            // LoadCategories();
+            LoadCategories();
         }
 
         private void LoadCategories()
         {
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 DataTable dt = _categoryDAL.GetAll();
@@ -38,7 +33,6 @@ namespace SkateboardSeeSharp
                 MessageBox.Show("Error loading categories: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
         }
 
         private void ClearFields()
@@ -55,8 +49,6 @@ namespace SkateboardSeeSharp
                 return;
             }
 
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 string newId = _categoryDAL.GetNextCategoryId();
@@ -71,11 +63,6 @@ namespace SkateboardSeeSharp
             {
                 MessageBox.Show("Error adding category: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
-
-            // DEMO: Show success without DB
-            MessageBox.Show("Category added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearFields();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -92,8 +79,6 @@ namespace SkateboardSeeSharp
                 return;
             }
 
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             try
             {
                 if (_categoryDAL.Update(_selectedCategoryId, txtCategoryName.Text.Trim()))
@@ -107,11 +92,6 @@ namespace SkateboardSeeSharp
             {
                 MessageBox.Show("Error updating category: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
-
-            // DEMO: Show success without DB
-            MessageBox.Show("Category updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearFields();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -127,8 +107,6 @@ namespace SkateboardSeeSharp
 
             if (result == DialogResult.Yes)
             {
-                // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-                /*
                 try
                 {
                     if (_categoryDAL.Delete(_selectedCategoryId))
@@ -142,25 +120,17 @@ namespace SkateboardSeeSharp
                 {
                     MessageBox.Show("Error deleting category: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                */
-
-                // DEMO: Show success without DB
-                MessageBox.Show("Category deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearFields();
             }
         }
 
         private void dgvCategories_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // DB: UNCOMMENT WHEN DATABASE IS CONNECTED
-            /*
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvCategories.Rows[e.RowIndex];
                 _selectedCategoryId = row.Cells["Category_ID"].Value.ToString();
                 txtCategoryName.Text = row.Cells["Category_Name"].Value.ToString();
             }
-            */
         }
     }
 }
