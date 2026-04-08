@@ -49,6 +49,20 @@ namespace SkateboardSeeSharp.DAL
             return dt;
         }
 
+        public DataTable SearchEmployees(string searchTxt)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                string query = @"SELECT Employee_ID, Employee_Name, Position, Authority, Username, Phone_Number, Email FROM Employee
+                                 WHERE Employee_Name LIKE @Search OR Username LIKE @Search OR Position LIKE @Search";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@Search", "%" + searchTxt + "%");
+                adapter.Fill(dt);
+            }
+            return dt;
+        }
+
         public bool Insert(Employee emp)
         {
             using (SqlConnection conn = DBConnection.GetConnection())

@@ -38,9 +38,13 @@ namespace SkateboardSeeSharp
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.panelFields.SuspendLayout();
             this.panelButtons.SuspendLayout();
+            this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.SuspendLayout();
             // 
@@ -271,6 +275,39 @@ namespace SkateboardSeeSharp
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // panelTop
+            // 
+            this.panelTop.BackColor = System.Drawing.Color.White;
+            this.panelTop.Controls.Add(this.txtSearch);
+            this.panelTop.Controls.Add(this.lblSearch);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(350, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Padding = new System.Windows.Forms.Padding(20);
+            this.panelTop.Size = new System.Drawing.Size(630, 80);
+            this.panelTop.TabIndex = 2;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblSearch.Location = new System.Drawing.Point(20, 28);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(155, 23);
+            this.lblSearch.TabIndex = 0;
+            this.lblSearch.Text = "Search Employees:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtSearch.Location = new System.Drawing.Point(180, 24);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(430, 32);
+            this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // dgvEmployees
             // 
             this.dgvEmployees.AllowUserToAddRows = false;
@@ -289,13 +326,13 @@ namespace SkateboardSeeSharp
             this.dgvEmployees.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.EnableHeadersVisualStyles = false;
-            this.dgvEmployees.Location = new System.Drawing.Point(350, 0);
+            this.dgvEmployees.Location = new System.Drawing.Point(350, 80);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false;
             this.dgvEmployees.RowTemplate.Height = 35;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(630, 630);
+            this.dgvEmployees.Size = new System.Drawing.Size(630, 550);
             this.dgvEmployees.TabIndex = 1;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
             // 
@@ -305,12 +342,15 @@ namespace SkateboardSeeSharp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 630);
             this.Controls.Add(this.dgvEmployees);
+            this.Controls.Add(this.panelTop);
             this.Controls.Add(this.panelFields);
             this.Name = "EmployeeForm";
             this.Text = "Employee Management";
             this.panelFields.ResumeLayout(false);
             this.panelFields.PerformLayout();
             this.panelButtons.ResumeLayout(false);
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.ResumeLayout(false);
         }
@@ -338,6 +378,9 @@ namespace SkateboardSeeSharp
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dgvEmployees;
     }
 }

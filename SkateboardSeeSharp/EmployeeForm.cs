@@ -64,6 +64,10 @@ namespace SkateboardSeeSharp
             cmbPosition.SelectedIndex = -1;
             cmbAuthority.SelectedIndex = -1;
             btnAdd.Enabled = true;
+            if (txtSearch != null)
+            {
+                txtSearch.Clear();
+            }
         }
 
         private bool ValidateFields()
@@ -235,6 +239,26 @@ namespace SkateboardSeeSharp
                 cmbAuthority.SelectedItem = row.Cells["Authority"].Value.ToString();
                 txtPhone.Text = row.Cells["Phone_Number"].Value?.ToString() ?? "";
                 txtEmail.Text = row.Cells["Email"].Value?.ToString() ?? "";
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchTxt = txtSearch.Text.Trim();
+                DataTable dt = string.IsNullOrEmpty(searchTxt) ? _employeeDAL.GetAll() : _employeeDAL.SearchEmployees(searchTxt);
+                
+                dgvEmployees.DataSource = dt;
+                
+                if (dgvEmployees.Columns.Contains("Password"))
+                {
+                    dgvEmployees.Columns["Password"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Can ignore or log search errors
             }
         }
     }
