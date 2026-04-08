@@ -21,6 +21,7 @@ namespace SkateboardSeeSharp
             this.panelLogo = new System.Windows.Forms.Panel();
             this.lblShopName = new System.Windows.Forms.Label();
             this.btnEmployees = new System.Windows.Forms.Button();
+            this.btnCustomers = new System.Windows.Forms.Button();
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
             this.btnOrders = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@ namespace SkateboardSeeSharp
             this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(44, 62, 80);
             this.panelSidebar.Controls.Add(this.panelLogo);
             this.panelSidebar.Controls.Add(this.btnEmployees);
+            this.panelSidebar.Controls.Add(this.btnCustomers);
             this.panelSidebar.Controls.Add(this.btnCategories);
             this.panelSidebar.Controls.Add(this.btnProducts);
             this.panelSidebar.Controls.Add(this.btnOrders);
@@ -88,6 +90,24 @@ namespace SkateboardSeeSharp
             this.btnEmployees.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
+            // btnCustomers
+            // 
+            this.btnCustomers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomers.FlatAppearance.BorderSize = 0;
+            this.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnCustomers.ForeColor = System.Drawing.Color.White;
+            this.btnCustomers.Location = new System.Drawing.Point(0, 120);
+            this.btnCustomers.Name = "btnCustomers";
+            this.btnCustomers.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnCustomers.Size = new System.Drawing.Size(220, 50);
+            this.btnCustomers.TabIndex = 7;
+            this.btnCustomers.Text = "👥  Customers";
+            this.btnCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomers.UseVisualStyleBackColor = false;
+            this.btnCustomers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
+            // 
             // btnCategories
             // 
             this.btnCategories.Dock = System.Windows.Forms.DockStyle.Top;
@@ -95,7 +115,7 @@ namespace SkateboardSeeSharp
             this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCategories.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnCategories.ForeColor = System.Drawing.Color.White;
-            this.btnCategories.Location = new System.Drawing.Point(0, 120);
+            this.btnCategories.Location = new System.Drawing.Point(0, 170);
             this.btnCategories.Name = "btnCategories";
             this.btnCategories.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnCategories.Size = new System.Drawing.Size(220, 50);
@@ -113,7 +133,7 @@ namespace SkateboardSeeSharp
             this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProducts.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnProducts.ForeColor = System.Drawing.Color.White;
-            this.btnProducts.Location = new System.Drawing.Point(0, 170);
+            this.btnProducts.Location = new System.Drawing.Point(0, 220);
             this.btnProducts.Name = "btnProducts";
             this.btnProducts.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnProducts.Size = new System.Drawing.Size(220, 50);
@@ -131,7 +151,7 @@ namespace SkateboardSeeSharp
             this.btnOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrders.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnOrders.ForeColor = System.Drawing.Color.White;
-            this.btnOrders.Location = new System.Drawing.Point(0, 220);
+            this.btnOrders.Location = new System.Drawing.Point(0, 270);
             this.btnOrders.Name = "btnOrders";
             this.btnOrders.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnOrders.Size = new System.Drawing.Size(220, 50);
@@ -149,7 +169,7 @@ namespace SkateboardSeeSharp
             this.btnStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStockIn.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnStockIn.ForeColor = System.Drawing.Color.White;
-            this.btnStockIn.Location = new System.Drawing.Point(0, 270);
+            this.btnStockIn.Location = new System.Drawing.Point(0, 320);
             this.btnStockIn.Name = "btnStockIn";
             this.btnStockIn.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnStockIn.Size = new System.Drawing.Size(220, 50);
@@ -246,6 +266,7 @@ namespace SkateboardSeeSharp
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Label lblShopName;
         private System.Windows.Forms.Button btnEmployees;
+        private System.Windows.Forms.Button btnCustomers;
         private System.Windows.Forms.Button btnCategories;
         private System.Windows.Forms.Button btnProducts;
         private System.Windows.Forms.Button btnOrders;

@@ -78,6 +78,12 @@ namespace SkateboardSeeSharp
             LoadFormInPanel(new CategoryForm());
         }
 
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            HighlightButton(btnCustomers);
+            LoadFormInPanel(new CustomerForm());
+        }
+
         private void btnProducts_Click(object sender, EventArgs e)
         {
             HighlightButton(btnProducts);
