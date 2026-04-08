@@ -87,7 +87,7 @@ namespace SkateboardSeeSharp
         private void btnProducts_Click(object sender, EventArgs e)
         {
             HighlightButton(btnProducts);
-            LoadFormInPanel(new StockInForm());
+            LoadFormInPanel(new ProductsForm());
         }
 
         private void btnOrders_Click(object sender, EventArgs e)
